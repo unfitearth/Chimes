@@ -86,6 +86,7 @@ Windows opens `.ps1` files in an editor instead of running them):
 
 | File                | Does                                                                                             |
 |---------------------|--------------------------------------------------------------------------------------------------|
+| `chimes-widget.bat` | Tray icon (green = on, red = muted) + a small always-on-top panel with an on/off switch and 30m / 1h / 2h mute buttons |
 | `chimes-on.bat`     | Unmute                                                                                            |
 | `chimes-off.bat`    | Mute until you turn it back on                                                                    |
 | `chimes-timer.bat`  | Mute for a while — asks how long (default 30m); also takes it as an argument: `chimes-timer 2h`   |
@@ -107,6 +108,11 @@ your profile (`notepad $PROFILE`), with your own path:
 ```powershell
 function chimes { & "C:\path\to\Chimes\chimes.ps1" @args }
 ```
+
+The widget lives in the system tray: left-click the dot to open/hide the
+panel, right-click for a quick mute menu. Closing the panel just hides it —
+quit from the tray menu. To have it start with Windows, press `Win+R`, run
+`shell:startup`, and drop a shortcut to `chimes-widget.bat` there.
 
 How it works: `chimes.ps1 off` drops a `.muted` file next to the wavs;
 `play-sound.ps1` checks for it before playing and exits silently if present.
